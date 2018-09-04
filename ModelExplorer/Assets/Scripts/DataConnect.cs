@@ -7,9 +7,9 @@ using UnityEngine.Networking;
 public class DataConnect : MonoBehaviour
 {
     public GameObject myPrefab;
-    //string WebsiteURL = "https://dwhi045.azurewebsites.net/tables/AstronautsOnMoon?zumo-api-version=2.0.0";
+    //string WebsiteURL = "https://dwhi045.azurewebsites.net/tables/Boat?zumo-api-version=2.0.0";
 
-    string WebsiteURL = "https://mtak851.azurewebsites.net/tables/AstronautsOnMoon?zumo-api-version=2.0.0";
+    string WebsiteURL = "https://dwhi045.azurewebsites.net/tables/Boat?zumo-api-version=2.0.0";
 
 
 
@@ -34,8 +34,8 @@ public class DataConnect : MonoBehaviour
         }
 
         //We can now deserialize into an array of objects - in this case the class we created. The deserializer is smart enough to instantiate all the classes and populate the variables based on column name.
-        //AstronautsOnMoon[] AstronautsOnMoons = JsonReader.Deserialize<AstronautsOnMoon[]>(jsonResponse);
-        AstronautsOnMoon[] AstronautsOnMoons = JsonConvert.DeserializeObject<AstronautsOnMoon[]>(jsonResponse);
+        //Boat[] Boats = JsonReader.Deserialize<Boat[]>(jsonResponse);
+        Boat[] Boats = JsonConvert.DeserializeObject<Boat[]>(jsonResponse);
 
 
         //----------------------
@@ -47,12 +47,10 @@ public class DataConnect : MonoBehaviour
         //----------------------
 
         //We can now loop through the array of objects and access each object individually
-        foreach (AstronautsOnMoon AstronautsOnMoon in AstronautsOnMoons)
+        foreach (Boat Boat in Boats)
         {
             //Example of how to use the object
-            Debug.Log("This AstronautsOnMoons name is: " + AstronautsOnMoon.AstronautName);
-
-            Debug.Log("This AstronautsOnMoons Mission is: " + AstronautsOnMoon.Mission);
+            Debug.Log("This Boats name is: " + Boat.BoatName);
             //----------------------
             //YOUR CODE TO INSTANTIATE NEW PREFABS GOES HERE
             //float perc = i / (float)totalObjects;
@@ -62,18 +60,15 @@ public class DataConnect : MonoBehaviour
             //float y = 0.6f;
             //float z = 2.0f;
 
-            float x = AstronautsOnMoon.X;
-            float y = AstronautsOnMoon.Y;
-            float z = AstronautsOnMoon.Z;
+            float x = Boat.X;
+            float y = Boat.Y;
+            float z = Boat.Z;
 
             var newObject = (GameObject)Instantiate(myPrefab, new Vector3(x, y, z), Quaternion.identity);
             newObject.transform.Rotate(0,180,0);
             //newObject.GetComponent<CubeScript>().SetSize(.45f * (1.0f - perc));
             //newObject.GetComponent<CubeScript>().rotateSpeed = .2f + perc * 4.0f;
-            newObject.transform.Find("New Text").GetComponent<TextMesh>().text = AstronautsOnMoon.AstronautName;//"Hullo Again";
-
-            newObject.transform.Find("New Text2").GetComponent<TextMesh>().text = AstronautsOnMoon.Mission;//"Hullo Again";
-
+            newObject.transform.Find("New Text").GetComponent<TextMesh>().text = Boat.BoatName;//"Hullo Again";
             i++;
 
             //----------------------
