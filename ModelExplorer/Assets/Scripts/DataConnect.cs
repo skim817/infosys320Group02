@@ -65,7 +65,7 @@ public class DataConnect : MonoBehaviour
             float z = Boat.Z;
 
             var newObject = (GameObject)Instantiate(myPrefab, new Vector3(x, y, z), Quaternion.identity);
-            newObject.transform.Rotate(0,180,0);
+            newObject.transform.Rotate(0, 180, 0);
             //newObject.GetComponent<CubeScript>().SetSize(.45f * (1.0f - perc));
             //newObject.GetComponent<CubeScript>().rotateSpeed = .2f + perc * 4.0f;
             newObject.transform.Find("New Text").GetComponent<TextMesh>().text = Boat.BoatName;//"Hullo Again";
@@ -80,7 +80,7 @@ public class DataConnect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+   
     }
 
 }
